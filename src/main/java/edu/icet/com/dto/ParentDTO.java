@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class ParentDTO {
     private Long id;
-    private String studentName;
+    private String student_name;
     private String mobile;
     private String username;
     private String password;

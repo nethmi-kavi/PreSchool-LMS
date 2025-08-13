@@ -19,7 +19,7 @@ public class ParentService {
     public void addParent(ParentEntity p1){
 
         ParentEntity parent = new ParentEntity();
-        parent.setStudentName(p1.getStudentName());
+        parent.setStudent_name(p1.getStudent_name());
         parent.setMobile(p1.getMobile());
         parent.setUsername(p1.getUsername());
         parent.setPassword(p1.getPassword());

@@ -10,7 +10,7 @@ public class ParentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String studentName;
+    private String student_name;
     private String mobile;
     private String username;
     private String password;
