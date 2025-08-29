@@ -1,0 +1,241 @@
+/* TeacherDashboard.css */
+
+.dashboard-container {
+  display: flex;
+  height: 100vh; /* Full viewport height */
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #1e40af;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.main-content {
+  margin-left: 250px; /* Push content beside sidebar */
+  flex: 1;
+  padding: 1.5rem;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #f3f4f6;
+}
+
+
+.sidebar-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 1.5rem;
+  border-bottom: 1px solid #1e3a8a; /* blue-700 */
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+}
+
+.nav li:hover {
+  background-color: #1e3a8a; /* hover color */
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 1rem;
+  border-top: 1px solid #1e3a8a;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.sidebar-footer:hover {
+  background-color: #1e3a8a;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  padding: 1.5rem;
+  overflow: auto;
+}
+
+.main-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.main-header p {
+  color: #4b5563; /* gray-600 */
+}
+
+/* Dashboard cards */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.card p {
+  margin-top: 0.5rem;
+  color: #6b7280; /* gray-500 */
+}
+
+/* Chart section */
+.chart-section {
+  margin-top: 1.5rem;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  text-align: center;
+  color: #9ca3af; /* gray-400 */
+  height: 16rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 3rem 2rem;
+  gap: 1.5rem;
+}
+
+.category-card {
+  width: 200px;
+  padding: 2rem;
+  color: white;
+  font-weight: bold;
+  border-radius: 1rem;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+}
+/* LMS Support */
+.lms-support {
+  background-color: #f1f5f9;
+  padding: 2rem;
+  text-align: center;
+}
+
+.support-box {
+  border: 1px solid #93c5fd;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 0.5rem;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.site-footer {
+  background-color: #1e293b;
+  color: white;
+  padding: 3rem 2rem;
+  margin-top: 2rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-about,
+.footer-links,
+.footer-contact {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-logo {
+  width: 120px;
+  margin-bottom: 1rem;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin: 0.5rem 0;
+}
+
+.footer-links a {
+  color: #93c5fd;
+  text-decoration: none;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #334155;
+  padding-top: 1rem;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
+.footer-bottom a {
+  color: #4ade80;
+}
+
+
+.yellow { background-color: #1e3a8a; } /* deep blue */
+.blue   { background-color: #1d4ed8; } /* slightly lighter */
+.teal   { background-color: #2563eb; } /* vibrant blue */
+.green  { background-color: #38bdf8; } /* soft light blue */
+.pink   { background-color: #60a5fa; } /* sky blue */
+.orange { background-color: #7d7bec; } /* orange */ 

@@ -1,0 +1,82 @@
+.preschool-home {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  text-align: center;
+  background-color: #0f172a; 
+  color: white;
+  min-height: 100vh;
+
+}
+
+/* Hero section */
+.hero {
+  background-image: url('/images/preschool-worksheets-for-sri-lankan-kids.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 4rem 2rem;
+  color: white;
+}
+
+.hero-content {
+  background: rgba(159, 173, 204, 0.8); /* darker overlay for contrast */
+  display: inline-block;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.hero p {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.cta-button {
+  background-color: #3b82f6; /* blue-500 */
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #2563eb; /* darker blue on hover */
+}
+
+/* Category tiles */
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 3rem 2rem;
+  gap: 1.5rem;
+}
+
+.category-card {
+  width: 200px;
+  padding: 2rem;
+  color: white;
+  font-weight: bold;
+  border-radius: 1rem;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+}
+
+/* Replace bright colors with dark blue palette */
+.yellow { background-color: #1e3a8a; } /* deep blue */
+.blue   { background-color: #1d4ed8; } /* slightly lighter */
+.teal   { background-color: #2563eb; } /* vibrant blue */
+.green  { background-color: #38bdf8; } /* soft light blue */
+.pink   { background-color: #60a5fa; } /* sky blue */

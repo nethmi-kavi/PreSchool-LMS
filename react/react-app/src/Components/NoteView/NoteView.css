@@ -1,0 +1,74 @@
+/* General styling */
+.wrapper-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  width: 420px;
+  height: 650px;
+  background:rgb(2, 2, 75);
+  border-radius: 10px;
+  color: #171414;
+}
+
+.form-box {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 600px;
+}
+
+h3 {
+  text-align: center;
+  color: #333;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.listItem {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.listItem:last-child {
+  border-bottom: none;
+}
+
+strong {
+  font-size: 18px;
+  color: #444;
+}
+
+.link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Tooltip styling */
+.link[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 14px;
+  white-space: nowrap;
+  z-index: 10;
+  top: -30px;
+  left: 0;
+}

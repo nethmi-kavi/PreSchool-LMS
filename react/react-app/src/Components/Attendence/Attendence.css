@@ -1,0 +1,44 @@
+.wrapper1 {
+  position: relative;
+  width: 700px;
+  height: 700px;
+  background:rgb(2, 2, 75);
+  border-radius: 10px;
+  color: #fff;
+}
+.wrapper1 .form-box {
+  width: 100%;
+  padding: 40px;
+}
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: rgb(126, 125, 125);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.attendance-table th,
+.attendance-table td {
+  border: 1px solid #fff;
+  padding: 12px;
+  text-align: center;
+  color: #fff;
+}
+
+.attendance-table th {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.attendance-table tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+button {
+  margin-top: 15px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color:rgb(6, 6, 59);
+}
