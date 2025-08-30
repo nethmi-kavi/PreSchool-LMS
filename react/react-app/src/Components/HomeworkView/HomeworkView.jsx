@@ -11,8 +11,15 @@ function HomeworkView() {
   const fetchHomeworks = async () => {
     try {
       const res = await fetch('http://localhost:8080/homework/all');
+      if (!res.ok) {
+        throw new Error('Failed to fetch homework list');
+      }
       const data = await res.json();
-      setHomeworks(data);
+      if (data.length === 0) {
+        setMessage('❌ No homework titles available.');
+      } else {
+        setHomeworks(data);
+      }
     } catch (err) {
       console.error('Error fetching homeworks:', err);
       setMessage('❌ Failed to load homework list.');
@@ -44,9 +51,9 @@ function HomeworkView() {
       if (res.ok) {
         setMessage(`✅ Submitted for "${homeworkTitle}" successfully!`);
         setFile(null);
-        document.getElementById('fileInput').value = '';
+        document.getElementById('fileInput').value = ''; // Reset the file input
       } else {
-        setMessage('❌ Submission failed.');
+        setMessage('❌ Submission failed. Please try again.');
       }
     } catch (err) {
       console.error('Error submitting homework:', err);
@@ -80,31 +87,33 @@ function HomeworkView() {
         </div>
 
         {/* Homework List */}
-        <h4>📄 Uploaded Files</h4>
+        <h4>📄 Available Homework</h4>
         <div className="homework-list">
-          {homeworks.length === 0 && <p>No homework available.</p>}
-          {homeworks.map((hw) => (
-            <div className="homework-card" key={hw.id}>
-              <div className="homework-title">{hw.homeworkTitle}</div>
-              <div className="homework-info">
-                {hw.fileName} <span className="file-type">({hw.fileType})</span>
-              </div>
-              <div className="homework-actions">
-                <a
-                  href={`http://localhost:8080/homework/download/${hw.id}`}
-                  className="download-link"
-                  download
-                >
-                  ⬇️ Download
-                </a>
-                <button
-                  className="submit-btn"
-                  onClick={() => handleSubmit(hw.homeworkTitle)}
-                >
-                  📤 Submit
-                </button>
-              </div>
-            </div>
+          {homeworks.length === 0 && <p>No homework available at the moment.</p>}
+{homeworks.map((hw) => (
+  <div className="homework-card" key={hw.id}>
+    <div className="homework-title">
+      📚 <strong>{hw.title}</strong> {/* Display the homework title */}
+    </div>
+    <div className="homework-info">
+      {hw.fileName} <span className="file-type">({hw.fileType})</span>
+    </div>
+    <div className="homework-actions">
+      <a
+        href={`http://localhost:8080/homework/download/${hw.id}`}
+        className="download-link"
+        download
+      >
+        ⬇️ Download
+      </a>
+      <button
+        className="submit-btn"
+        onClick={() => handleSubmit(hw.homeworkTitle)}
+      >
+        📤 Submit
+      </button>
+    </div>
+  </div>
           ))}
         </div>
 

@@ -1,12 +1,13 @@
 package edu.icet.com.service;
 
-import edu.icet.com.dto.ParentDTO;
 import edu.icet.com.entities.ParentEntity;
 import edu.icet.com.entities.UserEntity;
 import edu.icet.com.repository.ParentRepository;
 import edu.icet.com.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ParentService {
@@ -33,5 +34,9 @@ public class ParentService {
 
         userRepo.save(user);
 
+    }
+
+    public List<ParentEntity> getAllStudents(){
+        return  parentRepo.findAll();
     }
 }

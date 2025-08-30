@@ -27,12 +27,11 @@ function Attendence() {
 
   const submitAttendance = () => {
     const attendanceList = students
-      .filter(emp => attendance[emp.id] !== undefined)
-      .map(emp => ({
-        parentId: emp.id,
-        student_name: emp.student_name,
-        username: emp.username,
-        status: attendance[emp.id] ? "Present" : "Absent",
+      .filter(student => attendance[student.id] !== undefined) // Filter out students whose attendance isn't marked
+      .map(student => ({
+        name: student.name,  // Ensure consistency with backend field names
+        username: student.username,          // Ensure consistency with backend field names
+        status: attendance[student.id] ? "Present" : "Absent",
         date: today
       }));
 

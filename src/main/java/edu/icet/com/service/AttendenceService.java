@@ -1,16 +1,12 @@
 package edu.icet.com.service;
 
-import edu.icet.com.dto.AttendenceDTO;
-import edu.icet.com.dto.AttendenceItem;
-import edu.icet.com.entities.AttendenceEntity;
 import edu.icet.com.entities.AttendenceItemEntity;
-import edu.icet.com.entities.ParentEntity;
 import edu.icet.com.repository.AttendenceItemRepository;
-import edu.icet.com.repository.AttendenceRepository;
 import edu.icet.com.repository.ParentRepository;
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,63 +23,61 @@ public class AttendenceService {
     private final ModelMapper mp = new ModelMapper();
 
     @Autowired
-    private ParentRepository pr;
+    private ParentRepository parentRepository;
+
 
     @Autowired
-    private AttendenceRepository ar;
-
-    @Autowired
-    private AttendenceItemRepository ai;
+    private AttendenceItemRepository attendenceItemRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(AttendenceService.class);
 
-    public void submitAttendence(AttendenceDTO attendenceDto) {
-        LocalDate date = attendenceDto.getDate();
+    @Transactional
+    public Boolean submitAttendence(List<AttendenceItemEntity> attendenceDtoList) {
+        try {
 
-        if (attendenceDto.getItems() != null) {
-            for (AttendenceItem item : attendenceDto.getItems()) {
-                Long parentId = item.getParentId();
-                String name = item.getStudent_name();
-                String username = item.getUsername();
-                String status = item.getStatus();
+            attendenceDtoList.forEach(item -> {
+                System.out.println("Processing: " + item.getName() + ", " + item.getUsername());
+            });
 
-                ParentEntity parentEntity = pr.findById(parentId).orElse(null);
-                if (parentEntity != null) {
-                    AttendenceItemEntity att = new AttendenceItemEntity();
-                    att.setParent(parentEntity);
-                    att.setDate(date);
-                    att.setStudent_name(name);
-                    att.setUsername(username);
-                    att.setStatus(status);
-                    ai.save(att);
+            for (AttendenceItemEntity item : attendenceDtoList) {
+                if (item.getName() == null || item.getUsername() == null) {
+                    throw new RuntimeException("Missing required fields for attendance submission.");
                 }
+
+                AttendenceItemEntity itemE = new AttendenceItemEntity();
+                itemE.setDate(item.getDate());
+                itemE.setStatus(item.getStatus());
+                itemE.setName(item.getName());
+                itemE.setUsername(item.getUsername());
+
+                attendenceItemRepository.save(itemE);
             }
-        } else {
-
-            System.out.println("Warning: AttendenceDTO items list is null");
+            return true; // ✅ transaction commits if no error
+        } catch (Exception e) {
+            System.err.println("Error in submitAttendence: " + e.getMessage()); // Log the error
+            throw new RuntimeException("Failed to submit attendance: " + e.getMessage(), e);
         }
-
-
-        AttendenceEntity attendance = new AttendenceEntity();
-        attendance.setDate(date);
-        ar.save(attendance);
     }
 
-    public List<AttendenceItem> getAbsentParents() {
+
+    public List<AttendenceItemEntity> getAbsentParents() {
         LocalDate today = LocalDate.now();
-        List<AttendenceItemEntity> attendanceEntities = ai.findByDate(today);
-        List<AttendenceItem> absentParents = new ArrayList<>();
+        List<AttendenceItemEntity> attendanceEntities = attendenceItemRepository.findByDate(today);
+        List<AttendenceItemEntity> absentParents = new ArrayList<>();
 
         for (AttendenceItemEntity entity : attendanceEntities) {
             if ("Absent".equalsIgnoreCase(entity.getStatus())) {
-                AttendenceItem item = mp.map(entity, AttendenceItem.class);
+                AttendenceItemEntity item = mp.map(entity, AttendenceItemEntity.class);
                 absentParents.add(item);
-                sendMessage(entity.getUsername(), entity.getStudent_name());
+                sendMessage(entity.getUsername(), entity.getName());
             }
         }
         return absentParents;
     }
 
+    /**
+     * Send email notification to the parent about absence.
+     */
     public void sendMessage(String toEmail, String name) {
         final String fromEmail = "kavindyarathnayake456@gmail.com";
         final String password = "mvza cque ntgs moli";
@@ -103,8 +97,7 @@ public class AttendenceService {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(fromEmail));
-            message.setRecipients(
-                    Message.RecipientType.TO, InternetAddress.parse(toEmail));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
             message.setSubject("School Absence Notification");
             message.setText("Dear Parent,\n\nYour child " + name +
                     " was marked absent from school today. Please inform us of the reason for the absence.\n\nThank you.");
@@ -114,5 +107,9 @@ public class AttendenceService {
         } catch (MessagingException e) {
             logger.error("Failed to send email to {}: {}", toEmail, e.getMessage());
         }
+    }
+
+    public List<AttendenceItemEntity> getByDate(String date) {
+        return  attendenceItemRepository.findByDate(LocalDate.parse(date));
     }
 }

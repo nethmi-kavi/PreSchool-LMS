@@ -19,6 +19,7 @@ public class LoginService {
 
         System.out.println("Login check for username: " + username + ", Role ID: " + roleId);
         return roleId;
+
     }
 
     public void loginDashboard(int roleId){

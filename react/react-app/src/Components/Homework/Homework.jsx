@@ -7,20 +7,20 @@ function Homework() {
   const [notes, setNotes] = useState([]);
   const [message, setMessage] = useState("");
 
+  // Fetch all homework notes
   const fetchHomeworks = async () => {
     try {
       const res = await fetch("http://localhost:8080/homework/all");
+      if (!res.ok) throw new Error("Failed to fetch homework.");
       const data = await res.json();
       setNotes(data);
     } catch (err) {
       console.error("Error fetching homeworks:", err);
+      setMessage("❌ Failed to load homework.");
     }
   };
 
-  useEffect(() => {
-    fetchHomeworks();
-  }, []);
-
+  // Upload homework (file + title)
   const handleUpload = async (e) => {
     e.preventDefault();
 
@@ -48,7 +48,7 @@ function Homework() {
         setMessage("✅ File uploaded successfully!");
         setFile(null);
         setTitle("");
-        fetchHomeworks();
+        fetchHomeworks(); // Refresh homework list
       } else {
         setMessage("❌ Upload failed.");
       }
@@ -58,6 +58,7 @@ function Homework() {
     }
   };
 
+  // Delete homework by ID
   const handleDelete = async (id) => {
     try {
       const res = await fetch(`http://localhost:8080/homework/delete/${id}`, {
@@ -66,7 +67,7 @@ function Homework() {
 
       if (res.ok) {
         setMessage("🗑️ File deleted successfully.");
-        fetchHomeworks();
+        fetchHomeworks(); // Refresh homework list
       } else {
         setMessage("❌ Failed to delete file.");
       }
@@ -76,7 +77,7 @@ function Homework() {
     }
   };
 
-  // Group notes by homework title
+  // Group notes by title for better organization
   const groupedNotes = notes.reduce((groups, note) => {
     const groupTitle = note.homeworkTitle || "Untitled";
     if (!groups[groupTitle]) {
@@ -113,7 +114,7 @@ function Homework() {
             </button>
           </form>
 
-          {/* Feedback message */}
+          {/* Display Feedback Message */}
           {message && <p className="message">{message}</p>}
 
           <h3>📜 Uploaded Homework</h3>

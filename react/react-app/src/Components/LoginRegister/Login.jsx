@@ -51,8 +51,8 @@ function Login() {
   };
 
   return (
-    <div className="wrapper">
-      <div className="form-box login">
+    <div className="wrapper_login">
+      <div className="form-box ">
         <form onSubmit={handleSubmit}>
           <h1>Login</h1>
 

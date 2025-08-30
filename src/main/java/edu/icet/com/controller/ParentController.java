@@ -5,6 +5,8 @@ import edu.icet.com.service.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/parents")
 @CrossOrigin
@@ -16,6 +18,11 @@ public class ParentController {
     @PostMapping("/add")
     public void save(@RequestBody ParentEntity p1){
         parentService.addParent(p1);
+    }
+
+    @GetMapping("/all")
+    public List<ParentEntity> getAllStudents(){
+        return parentService.getAllStudents();
     }
 
 

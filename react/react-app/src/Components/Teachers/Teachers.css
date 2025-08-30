@@ -1,40 +1,57 @@
 .wrapper2 {
   position: relative;
   width: 550px;
-  height: 650px;
-  background: rgb(2, 2, 75);
-  border-radius: 10px;
+  height: auto;
+  background: #02024b; /* Dark blue background for contrast */
+  border-radius: 20px; /* Rounded corners for a smooth, professional appearance */
   color: #fff;
+  padding: 40px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3); /* Adding a soft shadow for depth */
+  
 }
 
-.wrapper2 .form-box {
+.wrapper2:hover {
+  transform: perspective(1500px) rotateX(0deg) rotateY(0deg) scale(1.05); /* Reset on hover */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
+}
+
+.form-box {
   width: 100%;
-  padding: 80px;
+  padding: 50px;
+  text-align: center;
+  background: rgba(36, 37, 90, 0.9); /* Dark gradient for form background */
+  border-radius: 20px;
 }
 
 form h1 {
   font-size: 36px;
-  text-align: center;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4); /* Subtle text-shadow for emphasis */
 }
 
 form .input-box {
   position: relative;
   width: 100%;
   height: 50px;
-  margin: 30px 0;
+  margin: 25px 0;
   background: rgb(126, 125, 125);
+  border-radius: 50px; /* Rounded input boxes for a modern look */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Adding a shadow to input boxes */
 }
+
 .input-box input {
   width: 100%;
   height: 100%;
   background: transparent;
   border: none;
   outline: none;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
   font-size: 16px;
   color: #fff;
   padding: 20px 45px 20px 20px;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .input-box input::placeholder {
@@ -46,44 +63,63 @@ form .input-box {
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 16px;
-}
-form .remember-forgot {
-  display: flex;
-  justify-content: space-between;
-  font-size: 14.5px;
-  margin: -15px 0 15px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s ease;
 }
 
-.remember-forgot label input {
-  accent-color: #fff;
-  margin-right: 4px;
+.input-box input:focus {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); /* Glowing effect when focused */
+  border-color: #ffb400; /* Highlight on focus */
+  transform: scale(1.05); /* Slight scaling for emphasis */
 }
 
-.remember-forgot a {
-  color: #fff;
-  text-decoration: none;
-}
-.remember-forgot a:hover {
-  text-decoration: underline;
+input:focus ~ .icon {
+  color: #ffb400; /* Change icon color when input is focused */
 }
 
 form button {
   width: 100%;
   height: 45px;
-  background: #fff;
+  background: linear-gradient(135deg, #ff5f6d, #ffc3a0); /* Elegant gradient for the button */
   border: none;
   outline: none;
-  border-radius: 40px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Soft button shadow */
   cursor: pointer;
   font-size: 16px;
-  color: #333;
+  color: #fff;
   font-weight: 700;
+  transition: transform 0.3s ease, box-shadow 0.3s ease-in-out;
+}
+
+form button:hover {
+  transform: translateY(-4px) scale(1.05); /* Lift effect on hover */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+form button:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Glowing effect on focus */
+}
+
+form button:active {
+  transform: translateY(2px); /* Slight press effect when clicked */
 }
 
 form .register-link {
   font-size: 14.5px;
   text-align: center;
-  margin: 20px 0 15px;
+  margin: 20px 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+form .register-link a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+form .register-link a:hover {
+  color: #ffb400; /* Highlight link on hover */
 }

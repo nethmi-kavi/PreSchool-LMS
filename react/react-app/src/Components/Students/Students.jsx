@@ -51,7 +51,7 @@ function Students() {
   };
 
   return (
-    <div className="wrapper">
+    <div className="wrapper_students">
       <div className="form-box login">
         <form onSubmit={handleSubmit}>
           <h1>Register</h1>

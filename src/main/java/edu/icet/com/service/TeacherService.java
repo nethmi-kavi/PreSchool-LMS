@@ -32,4 +32,12 @@ public class TeacherService {
 
         userRepository.save(user);
     }
+
+    public void deleteTeachers(Long id) {
+        if (teacherRepository.existsById(id)) {
+            teacherRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("File with ID " + id + " not found");
+        }
+    }
 }

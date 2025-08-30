@@ -19,4 +19,9 @@ public class TeacherController {
     public void save(@RequestBody TeacherEntity t1){
         teacherService.addTeachers(t1);
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable long id){
+        teacherService.deleteTeachers(id);
+    }
 }

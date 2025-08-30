@@ -1,7 +1,6 @@
 package edu.icet.com.controller;
 
-import edu.icet.com.dto.AttendenceDTO;
-import edu.icet.com.dto.AttendenceItem;
+import edu.icet.com.entities.AttendenceItemEntity;
 import edu.icet.com.service.AttendenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,15 +15,24 @@ public class AttendenceController {
     AttendenceService as;
 
 
-    @PostMapping
-    public void save(@RequestBody AttendenceDTO a1) {
-        as.submitAttendence(a1);
+
+
+    @PostMapping("/add")
+    public Boolean save(@RequestBody List<AttendenceItemEntity> attendanceList) {
+
+            return as.submitAttendence(attendanceList);
+
     }
 
 
-    @GetMapping("/")
-    public List<AttendenceItem> getAll() {
+    @GetMapping("/absent")
+    public List<AttendenceItemEntity> getAll() {
 
         return as.getAbsentParents();
+    }
+
+    @GetMapping("/by-date/{date}")
+    public List<AttendenceItemEntity> getByDate(@PathVariable String date) {
+        return as.getByDate(date);
     }
 }

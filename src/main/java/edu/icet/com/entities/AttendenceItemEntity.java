@@ -14,11 +14,9 @@ public class AttendenceItemEntity {
     private Long id;
 
     private LocalDate date;
-    private String student_name;
+    private String name;
     private String username;
     private String status;
 
-    @ManyToOne
-    @JoinColumn(name = "parentId")
-    private ParentEntity parent;
+
 }
