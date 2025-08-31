@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./AttendenceReport.css"; 
+import "./AttendenceReport.css";
 
 function AttendenceReport() {
   const [date, setDate] = useState("");
   const [records, setRecords] = useState([]);
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleFetch = async () => {
     if (!date) {
       setMessage("⚠️ Please select a date!");
       return;
     }
-
+    setLoading(true);
+    setMessage("");
     try {
       const res = await axios.get(`http://localhost:8080/attendence/by-date/${date}`);
       if (res.data.length === 0) {
@@ -20,11 +22,12 @@ function AttendenceReport() {
         setRecords([]);
       } else {
         setRecords(res.data);
-        setMessage("");
       }
     } catch (error) {
       console.error(error);
       setMessage("❌ Error fetching attendance records!");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -32,7 +35,6 @@ function AttendenceReport() {
     <div className="report-wrapper">
       <h1>Attendance Report</h1>
 
-      {/* Date Input */}
       <div className="date-input">
         <label>Select Date: </label>
         <input
@@ -43,10 +45,9 @@ function AttendenceReport() {
         <button onClick={handleFetch}>Get Records</button>
       </div>
 
-      {/* Message */}
       {message && <p className="message">{message}</p>}
+      {loading && <p>Loading attendance data...</p>}
 
-      {/* Results Table */}
       {records.length > 0 && (
         <table className="report-table">
           <thead>
@@ -60,10 +61,12 @@ function AttendenceReport() {
           <tbody>
             {records.map((rec) => (
               <tr key={rec.id}>
-                <td>{rec.student_name}</td>
+                <td>{rec.name}</td>
                 <td>{rec.username}</td>
-                <td>{rec.status}</td>
-                <td>{rec.date}</td>
+                <td style={{ color: rec.status === "Present" ? "green" : "red" }}>
+                  {rec.status}
+                </td>
+                <td>{new Date(rec.date).toLocaleDateString()}</td>
               </tr>
             ))}
           </tbody>

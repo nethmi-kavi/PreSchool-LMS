@@ -11,14 +11,15 @@ function Teacher_Dashboard() {
         <div className="sidebar-header">Teacher Dashboard</div>
         <nav className="nav">
           <ul>
-            <li><FaHome /> Home</li>
-            <li><FaBook /> Attendence</li>
-            <li><FaUsers /> Students</li>
-            <li><FaChartBar /> Reports</li>
+            <li><FaHome /><Link to="/teacherDashboard">Home</Link></li>
+            <li><FaBook /><Link to="/attendence"> Attendence</Link></li>
+            <li><FaUsers /><Link to="/students"> Students</Link></li>
+            <li><FaChartBar /><Link to="/attendenceReport"> Reports</Link></li>
+            <li><FaBook /> <Link to="/notes">Notes</Link></li>
           </ul>
         </nav>
         <div className="sidebar-footer">
-          <FaSignOutAlt /> Logout
+          <FaSignOutAlt /><Link to="/login"> Logout</Link>
         </div>
       </aside>
 

@@ -50,7 +50,7 @@ function Attendence() {
 
   return (
     <div className="wrapper1">
-      <div className="form-box">
+      
         <h1>Student Attendance</h1>
         <h3>Attendance for: {today}</h3>
 
@@ -104,7 +104,7 @@ function Attendence() {
             </ul>
           </div>
         )}
-      </div>
+      
     </div>
   );
 }

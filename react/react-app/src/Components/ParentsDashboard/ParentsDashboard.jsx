@@ -11,16 +11,15 @@ function ParentDashboard() {
         <div className="sidebar-header">Parents Dashboard</div>
         <nav className="nav">
           <ul>
-            <li><FaHome /> Home</li>
-            <li><FaBook /> Attendence</li>
-            <li><FaUsers /> Students</li>
-            <li><FaUserPlus />Teachers</li>
-            <li><FaChartBar /> Reports</li>
+             <li><FaHome /><Link to="/parentsDashboard">Home</Link></li>
+                        <li><FaUsers /><Link to="/studentsReport"> Students</Link></li>
+                        <li><FaChartBar /><Link to="/noteView"> Notes</Link></li>
+                        <li><FaBook /> <Link to="/homeworkView">Homeworks</Link></li>
           </ul>
         </nav>
         <div className="sidebar-footer">
-          <FaSignOutAlt /> Logout
-        </div>
+                  <FaSignOutAlt /><Link to="/login"> Logout</Link>
+                </div>
       </aside>
 
       {/* Main content */}

@@ -8,18 +8,19 @@ function AdminDashboard() {
     <div className="dashboard-container">
      
       <aside className="sidebar">
-        <div className="sidebar-header">Teacher Dashboard</div>
+        <div className="sidebar-header">Admin Dashboard</div>
         <nav className="nav">
           <ul>
-            <li><FaHome /> Home</li>
-            <li><FaBook /> Attendence</li>
-            <li><FaUsers /> Students</li>
-            <li><FaUserPlus />Teachers</li>
-            <li><FaChartBar /> Reports</li>
+           <li><FaHome /><Link to="/teacherDashboard">Home</Link></li>
+                       <li><FaBook /><Link to="/attendence"> Attendence</Link></li>
+                       <li><FaUsers /><Link to="/students"> Students</Link></li>
+                       <li><FaChartBar /><Link to="/attendenceReport"> Reports</Link></li>
+                       <li><FaBook /> <Link to="/notes">Notes</Link></li>
+                        <li><FaUsers /> <Link to="/homework">Homeworks</Link></li>
           </ul>
         </nav>
         <div className="sidebar-footer">
-          <FaSignOutAlt /> Logout
+          <FaSignOutAlt /><Link to="/login"> Logout</Link>
         </div>
       </aside>
 

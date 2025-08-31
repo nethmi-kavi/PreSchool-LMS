@@ -1,4 +1,4 @@
-package edu.icet.com.config;
+package edu.icet.com.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

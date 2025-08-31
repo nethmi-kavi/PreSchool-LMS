@@ -39,4 +39,6 @@ public class ParentService {
     public List<ParentEntity> getAllStudents(){
         return  parentRepo.findAll();
     }
+
+
 }

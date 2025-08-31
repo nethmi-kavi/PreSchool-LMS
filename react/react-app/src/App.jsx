@@ -16,6 +16,7 @@ import ParentsDashboard from './Components/ParentsDashboard/ParentsDashboard';
 import AttendenceReport from './Components/AttendenceReport/AttendenceReport';
 import StudentseReport from './Components/StudentsReport/StudentsReport';
 import HomeworkView from './Components/HomeworkView/HomeworkView';
+import ForgetPassword from './Components/ForgetPassword/ForgetPassword';
 
 function App() {
   return (
@@ -35,7 +36,8 @@ function App() {
         <Route path="/parentsDashboard" element={<ParentsDashboard/>} />
         <Route path="/attendenceReport" element={<AttendenceReport/>} />
         <Route path="/studentsReport" element={<StudentseReport/>} />  
-        <Route path="/homeworkView" element={<HomeworkView/>} />       
+        <Route path="/homeworkView" element={<HomeworkView/>} />  
+        <Route path="/forget" element={<ForgetPassword/>} />     
       </Routes>
     </Router>
   );

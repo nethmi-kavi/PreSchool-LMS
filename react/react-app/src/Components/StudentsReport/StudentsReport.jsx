@@ -7,7 +7,6 @@ function StudentsReport() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Fetch students on component mount
   useEffect(() => {
     handleFetch();
   }, []);
@@ -37,13 +36,9 @@ function StudentsReport() {
     <div className="report-wrapper">
       <h1>Students Report</h1>
 
-      {/* Loading */}
       {loading && <p>Loading students...</p>}
-
-      {/* Message */}
       {message && <p className="message">{message}</p>}
 
-      {/* Results Table */}
       {records.length > 0 && !loading && (
         <table className="report-table">
           <thead>
@@ -51,6 +46,7 @@ function StudentsReport() {
               <th>Student Name</th>
               <th>Birthday</th>
               <th>Parent</th>
+              <th>Username</th>
             </tr>
           </thead>
           <tbody>
@@ -62,14 +58,14 @@ function StudentsReport() {
                     ? new Date(rec.birthday).toLocaleDateString()
                     : "N/A"}
                 </td>
-                <td>{rec.parent?.name || "N/A"}</td>
+                <td>{rec.parent || "N/A"}</td>
+                <td>{rec.username}</td>
               </tr>
             ))}
           </tbody>
         </table>
       )}
 
-      {/* Optional: Button to manually refresh */}
       <button onClick={handleFetch} className="refresh-button">
         Refresh
       </button>

@@ -35,7 +35,7 @@ function Login() {
           navigate('/adminDashboard');
         } else if (result.enum === 2) {
           navigate('/parentsDashboard');
-        } else if(result===3){
+        } else if(result.enum===3){
           navigate('/teacherDashboard');
         }else {
           setMessage('❌ Unknown role.');
@@ -78,7 +78,7 @@ function Login() {
 
           <div className="remember-forgot">
             <label><input type="checkbox" /> Remember me</label>
-            <a href="#">Forgot password?</a>
+             <p><Link to="/forget">Forgot password?</Link></p>
           </div>
 
           {/* Submit button without Link */}
